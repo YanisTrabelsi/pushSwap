@@ -25,7 +25,7 @@ float	ft_disorder(t_list *lst)
 	while (lst -> next != NULL)
 	{
 		compare = lst -> next;
-		while(compare)
+		while (compare)
 		{
 			if (base > compare -> value)
 				disorder += 1.0f;
