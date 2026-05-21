@@ -19,7 +19,7 @@ float	ft_disorder(t_list *lst)
 
 	if (!lst)
 		return (NULL);
-	disorder = 0;
+	disorder = 0.0f;
 	nb_paires = 0;
 	base = lst -> value;
 	while (lst -> next != NULL)
@@ -28,7 +28,7 @@ float	ft_disorder(t_list *lst)
 		while(compare)
 		{
 			if (base > compare -> value)
-				disorder += 1.0;
+				disorder += 1.0f;
 			compare = compare -> next;
 			nb_paires++;
 		}
