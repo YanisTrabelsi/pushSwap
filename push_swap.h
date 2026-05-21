@@ -6,15 +6,21 @@
 /*   By: ytrabels </var/spool/mail/ytrabels>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 23:15:22 by ytrabels          #+#    #+#             */
-/*   Updated: 2026/05/21 23:21:49 by ytrabels         ###   ########.fr       */
+/*   Updated: 2026/05/22 01:14:33 by ytrabels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-struct		s_list
+
+typedef struct s_list
 {
-	int		value;
-	s_list	*next;
-	s_list	*prev;
-}			t_list;
+	int				value;
+	struct s_list	*next;
+	struct s_list	*prev;
+}					t_list;
+t_list				*ft_lstnew(int value);
+t_list				*ft_lstlast(t_list *lst);
+void				ft_lstadd_front(t_list **lst, t_list *new);
+void				ft_lstadd_back(t_list **lst, t_list *new);
+void				ft_lstdelfront(t_list **lst);
 #endif
