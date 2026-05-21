@@ -20,7 +20,7 @@ float	ft_disorder(t_list *lst)
 	if (!lst)
 		return (NULL);
 	disorder = 0;
-	nb_paires = 1;
+	nb_paires = 0;
 	base = lst -> value;
 	while (lst -> next != NULL)
 	{
