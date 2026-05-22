@@ -6,11 +6,10 @@
 /*   By: ytrabels <ytrabels@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 22:42:14 by ytrabels          #+#    #+#             */
-/*   Updated: 2026/05/22 01:14:24 by ytrabels         ###   ########.fr       */
+/*   Updated: 2026/05/22 02:51:55 by ytrabels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
-#include <stdlib.h>
 
 t_list	*ft_lstnew(int value)
 {
