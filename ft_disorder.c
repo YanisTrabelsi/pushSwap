@@ -6,9 +6,10 @@
 /*   By: lherpet <lherpet@learner.42.tech>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 23:20:51 by lherpet           #+#    #+#             */
-/*   Updated: 2026/05/21 23:20:52 by lherpet          ###   ########.fr       */
+/*   Updated: 2026/05/22 02:51:18 by ytrabels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "push_swap.h"
 
 float	ft_disorder(t_list *lst)
 {
@@ -18,21 +19,21 @@ float	ft_disorder(t_list *lst)
 	t_list	*compare;
 
 	if (!lst)
-		return (NULL);
+		return (0.0f);
 	disorder = 0.0f;
 	nb_paires = 0;
-	base = lst -> value;
-	while (lst -> next != NULL)
+	while (lst->next != NULL)
 	{
-		compare = lst -> next;
+		base = lst->value;
+		compare = lst->next;
 		while (compare)
 		{
-			if (base > compare -> value)
+			if (base > compare->value)
 				disorder += 1.0f;
-			compare = compare -> next;
+			compare = compare->next;
 			nb_paires++;
 		}
-		lst = lst -> next;
+		lst = lst->next;
 	}
 	return (disorder / nb_paires);
 }
