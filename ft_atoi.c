@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_duplicate.c                                     :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lherpet <lherpet@learner.42.tech>          +#+  +:+       +#+        */
+/*   By: ytrabels <ytrabels@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/22 02:49:44 by lherpet           #+#    #+#             */
-/*   Updated: 2026/05/22 03:09:04 by ytrabels         ###   ########.fr       */
+/*   Created: 2026/04/25 04:16:39 by ytrabels          #+#    #+#             */
+/*   Updated: 2026/05/22 03:18:30 by ytrabels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
-int	is_duplicate(int nb, t_list *lst)
+int	ft_atoi(const char *nptr)
 {
-	while (lst)
-	{
-		if (nb == lst -> value)
-			return (1);
-		lst = lst -> next;
-	}
-	return (0);
+	int		s;
+	long	res;
+
+	s = 1;
+	res = 0;
+	if (*nptr == '-' || *nptr == '+')
+		s = 44 - *nptr++;
+	while (*nptr >= '0' && *nptr <= '9')
+		res = res * 10 + (*nptr++ - 48) * s;
+	return (res);
 }
