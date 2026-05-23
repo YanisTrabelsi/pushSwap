@@ -6,7 +6,7 @@
 /*   By: ytrabels </var/spool/mail/ytrabels>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 03:23:49 by ytrabels          #+#    #+#             */
-/*   Updated: 2026/05/23 02:26:36 by ytrabels         ###   ########.fr       */
+/*   Updated: 2026/05/23 03:38:22 by ytrabels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -20,6 +20,7 @@ int	main(int argc, char **argv)
 	t_list	*head_a;
 
 	i = 1;
+	lst_a = NULL;
 	while (argv[i])
 	{
 		nb = ft_atoi(argv[i]);
@@ -38,9 +39,11 @@ int	main(int argc, char **argv)
 	lst_a = head_a;
 	//fonction de tri
 	bubble(lst_a);
+	/*
 	while (lst_a)
 	{
 		printf("|| %d ||\n", lst_a->value);
 		lst_a = lst_a->next;
 	}
+	*/
 }
