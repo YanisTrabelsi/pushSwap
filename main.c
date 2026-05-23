@@ -6,7 +6,7 @@
 /*   By: ytrabels </var/spool/mail/ytrabels>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 03:23:49 by ytrabels          #+#    #+#             */
-/*   Updated: 2026/05/22 03:44:40 by ytrabels         ###   ########.fr       */
+/*   Updated: 2026/05/23 02:26:36 by ytrabels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -17,7 +17,7 @@ int	main(int argc, char **argv)
 	int		i;
 	long	nb;
 	t_list	*lst_a;
-	t_list	*lst_b;
+	t_list	*head_a;
 
 	i = 1;
 	while (argv[i])
@@ -25,10 +25,19 @@ int	main(int argc, char **argv)
 		nb = ft_atoi(argv[i]);
 		if (nb < -2147483648 || nb > 2147483647 || is_duplicate(nb, lst_a))
 			return (1);
-		ft_lstadd_back(&lst, ft_lstnew(nb));
+		ft_lstadd_back(&lst_a, ft_lstnew(nb));
 		++i;
 	}
-	//met ta fonction de tri ici avec lst_a et lst_b en parametre
+	head_a = lst_a;
+	while (lst_a)
+	{
+		printf("| %d |", lst_a->value);
+		lst_a = lst_a->next;
+	}
+	printf("\n");
+	lst_a = head_a;
+	//fonction de tri
+	bubble(lst_a);
 	while (lst_a)
 	{
 		printf("|| %d ||\n", lst_a->value);

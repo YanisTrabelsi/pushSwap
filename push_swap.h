@@ -6,7 +6,7 @@
 /*   By: ytrabels </var/spool/mail/ytrabels>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 23:15:22 by ytrabels          #+#    #+#             */
-/*   Updated: 2026/05/22 03:09:34 by ytrabels         ###   ########.fr       */
+/*   Updated: 2026/05/23 01:19:02 by ytrabels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
@@ -28,4 +28,6 @@ void				ft_lstdelfront(t_list **lst);
 float				ft_disorder(t_list *lst);
 int					is_duplicate(int nb, t_list *lst);
 int					ft_atoi(const char *nptr);
+void				ft_lstswap(t_list *lst);
+void				bubble(t_list *lst_a);
 #endif

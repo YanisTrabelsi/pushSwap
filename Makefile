@@ -1,7 +1,7 @@
 NAME = push_swap
 CC = cc
 CFLAGS = -Werror -Wall -Wextra
-SOURCES = ft_disorder.c utils_lst.c is_duplicate.c ft_atoi.c
+SOURCES = ft_disorder.c utils_lst.c utils_lst2.c is_duplicate.c ft_atoi.c bubble.c
 OBJECTS = $(SOURCES:.c=.o)
 
 all: $(NAME)
