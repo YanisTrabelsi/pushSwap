@@ -12,43 +12,6 @@
 
 #include "push_swap.h"
 
-/*void	ft_lstadd_front(t_list **lst, t_list *new)
-{
-	new -> next = *lst;
-	*lst = new;
-}
-
-void	ft_lstdelfront(t_list **lst)
-{
-	t_list	*new_head;
-
-	new_head = (*lst)->next;
-	free(*lst);
-	*lst = new_head;
-}
-
-void	ft_lstadd_back(t_list **lst, t_list *new)
-{
-	t_list	*last;
-
-	if (!*lst)
-		*lst = new;
-	else
-	{
-		last = ft_lstlast(*lst);
-		last -> next = new;
-	}
-}
-
-t_list	*ft_lstlast(t_list *lst)
-{
-	if (!lst)
-		return (NULL);
-	while (lst -> next != NULL)
-		lst = lst -> next;
-	return (lst);
-}*/
-
 void	swap(t_list	*lst);
 {
 	t_list	*next_node;
