@@ -37,3 +37,14 @@ float	ft_disorder(t_list *lst)
 	}
 	return (disorder / nb_paires);
 }
+
+int	is_duplicate(int nb, t_list *lst)
+{
+	while (lst)
+	{
+		if (nb == lst -> value)
+			return (1);
+		lst = lst -> next;
+	}
+	return (0);
+}

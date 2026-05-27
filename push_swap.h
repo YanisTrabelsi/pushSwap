@@ -17,6 +17,7 @@
 typedef struct s_list
 {
 	int				value;
+	int				rank;
 	struct s_list	*next;
 	struct s_list	*prev;
 }					t_list;
