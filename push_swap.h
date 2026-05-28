@@ -21,11 +21,18 @@ typedef struct s_list
 	struct s_list	*next;
 	struct s_list	*prev;
 }					t_list;
+//fichier utils_lst.c
 t_list				*ft_lstnew(int value);
 t_list				*ft_lstlast(t_list *lst);
 void				ft_lstadd_front(t_list **lst, t_list *new);
 void				ft_lstadd_back(t_list **lst, t_list *new);
 void				ft_lstdelfront(t_list **lst);
+//fichier parsing.c
 float				ft_disorder(t_list *lst);
 int					is_duplicate(int nb, t_list *lst);
+//fichier normalise.c
+int					ft_lstsize(t_list *lst);
+void				complete_tab(t_list *lst, int *tab);
+void				sort_tab(int *tab, int max);
+void				normalise(t_list *lst);
 #endif
