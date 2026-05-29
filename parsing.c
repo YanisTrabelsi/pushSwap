@@ -1,15 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_disorder.c                                      :+:      :+:    :+:   */
+/*   is_duplicate.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lherpet <lherpet@learner.42.tech>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/21 23:20:51 by lherpet           #+#    #+#             */
-/*   Updated: 2026/05/22 02:51:18 by ytrabels         ###   ########.fr       */
+/*   Created: 2026/05/22 02:49:44 by lherpet           #+#    #+#             */
+/*   Updated: 2026/05/22 02:51:03 by lherpet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "push_swap.h"
+
+long	ft_atoi(const char *nptr)
+{
+	int		s;
+	long	res;
+
+	s = 1;
+	res = 0;
+	if (*nptr == '-' || *nptr == '+')
+		s = 44 - *nptr++;
+	while (*nptr >= '0' && *nptr <= '9')
+		res = res * 10 + (*nptr++ - 48) * s;
+	return (res);
+}
+
+int	is_duplicate(int nb, t_list *lst)
+{
+	while (lst)
+	{
+		if (nb == lst -> value)
+			return (1);
+		lst = lst -> next;
+	}
+	return (0);
+}
 
 float	ft_disorder(t_list *lst)
 {
