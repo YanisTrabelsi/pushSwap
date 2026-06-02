@@ -35,6 +35,6 @@ void				reverse_rotate(t_list	**lst);
 void				insertion(t_list **lsta, t_list **lstb);
 long				ft_atoi(const char *nptr);
 int					ft_lstsize(t_list *lst);
-void				normalise(t_list **lst);
+void				normalise(t_list *lst);
 void	chunk_base(t_list **lst_a, t_list **lst_b);
 #endif

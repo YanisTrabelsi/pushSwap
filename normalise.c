@@ -25,15 +25,15 @@ int	ft_lstsize(t_list *lst)
 	return (len);
 }
 
-static void	complete_tab(t_list **lst, int *tab)
+static void	complete_tab(t_list *lst, int *tab)
 {
 	int	i;
 
 	i = 0;
-	while (*lst)
+	while (lst)
 	{
-		tab[i] = (*lst) -> value;
-		*lst = (*lst) -> next;
+		tab[i] = lst -> value;
+		lst = lst -> next;
 		i++;
 	}
 }
@@ -57,27 +57,28 @@ static void	sort_tab(int *tab, int max)
 	}
 }
 
-void	normalise(t_list **lst)
+void	normalise(t_list *lst)
 {
 	int		*tab;
 	int		i;
 	int		lstsize;
 	t_list	*head;
 
-	lstsize = ft_lstsize(*lst);
+	lstsize = ft_lstsize(lst);
 	tab = malloc(lstsize * sizeof(int));
 	if (!tab)
 		return ;
 	i = 0;
-	head = *lst;
+	head = lst;
 	complete_tab(lst, tab);
 	sort_tab(tab, lstsize);
-	while (*lst)
+	while (i < lstsize)
 	{
-		while ((*lst) -> value != tab[i])
-			*lst = (*lst) -> next;
-		(*lst) -> rank = i + 1;
-		(*lst) = head;
+		while (lst -> value != tab[i])
+			lst = lst -> next;
+		lst -> rank = i + 1;
+		lst = head;
+		i++;
 	}
 	free(tab);
 }

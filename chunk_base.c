@@ -69,7 +69,7 @@ void	chunk_base(t_list **lst_a, t_list **lst_b)
 	int	nb_push;
 	t_list	*temp;
 
-	normalise(lst_a);
+	normalise(*lst_a);
 	i = 0;
 	mult = 1;
 	nb_push = 0;
@@ -84,12 +84,14 @@ void	chunk_base(t_list **lst_a, t_list **lst_b)
 		while (nb_push <= (initial_size/nb_chunk) * mult)
 		{
 			temp = *lst_a;
-			while (temp && (temp) -> rank > (initial_size/nb_chunk) * mult)
+			while (temp && temp -> rank > (initial_size/nb_chunk) * mult)
 			{
 				temp = temp -> next;
 				i++;
 			}
-			if (i > lst_size / 2)
+			if (!temp)
+				return ;
+			else if (i > lst_size / 2)
 			{
 				rank_value = temp -> rank;
 				while (*lst_a && ft_lstlast(*lst_a) -> rank != rank_value)
