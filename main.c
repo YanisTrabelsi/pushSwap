@@ -30,7 +30,7 @@ int	main(int argc, char **argv)
 		ft_lstadd_back(&lst_a, ft_lstnew(nb));
 		++i;
 	}
-	insertion(&lst_a, &lst_b);
+	chunk_base(&lst_a, &lst_b);
 	printf("==LSTA==\n");
 	while (lst_a)
 	{

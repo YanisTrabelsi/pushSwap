@@ -12,11 +12,57 @@
 
 #include "push_swap.h"
 
+static int	find_max(t_list *lst)
+{
+	int		index;
+	int		index_max;
+	t_list	*max;
+
+	index = 0;
+	index_max = 0;
+	max = lst;
+	while (lst)
+	{
+		index++;
+		if (max->value < lst->value)
+		{
+			max = lst;
+			index_max = index;
+		}
+		lst = lst->next;
+	}
+	return (index_max);
+}
+
+static void	insertion_max(t_list **lsta, t_list **lstb)
+{
+	int		i;
+
+	while (*lstb)
+	{
+		i = find_max(*lsta);
+		while (i > 0)
+		{
+			if (i > ft_lstsize(*lsta)/2)
+			{
+				rotate(lstb);
+				i--;
+			}
+			else
+			{
+				reverse_rotate(lstb);
+				i--;
+			}
+		}
+		push(lstb, lsta, 'b');
+	}
+}
+
 void	chunk_base(t_list **lst_a, t_list **lst_b)
 {
 	int	lst_size;
 	int	nb_chunk;
-	int	index;
+	int	i;
 	int	mult;
 	int	rank_value;
 	t_list	*head;
@@ -43,58 +89,16 @@ void	chunk_base(t_list **lst_a, t_list **lst_b)
 			while (*lst_a && ft_lstlast(*lst_a) -> rank != rank_value)
 				reverse_rotate(lst_a);
 			reverse_rotate(lst_a);
-			push(lst_a, lst_b, a);
+			push(lst_a, lst_b, 'a');
 		}
 		else
+		{
 			rank_value = (*lst_a) -> rank;
 			while (*lst_a && (*lst_a) -> rank != rank_value)
 				rotate(lst_a);
-			push(lst_a, lst_b, a);
-	}
-}
-
-static int	find_max(t_list *lst)
-{
-	int		index;
-	int		index_max;
-	t_list	*small;
-
-	index = 0;
-	index_max = 0;
-	max = lst;
-	while (lst)
-	{
-		index++;
-		if (max->value < lst->value)
-		{
-			max = lst;
-			index_max = index;
+			push(lst_a, lst_b, 'a');
 		}
-		lst = lst->next;
+		mult++;
 	}
-	return (index_max);
-}
-
-void	insertion(t_list **lsta, t_list **lstb)
-{
-	int		i;
-
-	while (*lstb)
-	{
-		i = find_max(*lsta);
-		while (i > 0)
-		{
-			if (i > ft_lstsize(*lst_a)/2)
-			{
-				rotate(lstb);
-				i--;
-			}
-			else
-			{
-				reverse_rotate(lstb);
-				i--;
-			}
-		}
-		push(lstb, lsta, 'b');
-	}
+	insertion_max(lst_a, lst_b);
 }
