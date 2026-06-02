@@ -25,15 +25,15 @@ int	ft_lstsize(t_list *lst)
 	return (len);
 }
 
-static void	complete_tab(t_list *lst, int *tab)
+static void	complete_tab(t_list **lst, int *tab)
 {
 	int	i;
 
 	i = 0;
-	while (lst)
+	while (*lst)
 	{
-		tab[i] = lst -> value;
-		lst = lst -> next;
+		tab[i] = (*lst) -> value;
+		*lst = (*lst) -> next;
 		i++;
 	}
 }
@@ -72,13 +72,12 @@ void	normalise(t_list **lst)
 	head = *lst;
 	complete_tab(lst, tab);
 	sort_tab(tab, lstsize);
-	while (i < lstsize)
+	while (*lst)
 	{
-		while (*lst -> value != tab[i])
-			*lst = *lst -> next;
-		*lst -> rank = i + 1;
-		*lst = head;
-		i++;
+		while ((*lst) -> value != tab[i])
+			*lst = (*lst) -> next;
+		(*lst) -> rank = i + 1;
+		(*lst) = head;
 	}
 	free(tab);
 }

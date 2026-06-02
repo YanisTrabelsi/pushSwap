@@ -23,44 +23,45 @@ static int	find_max(t_list *lst)
 	max = lst;
 	while (lst)
 	{
-		index++;
-		if (max->value < lst->value)
+		if (max->rank < lst->rank)
 		{
 			max = lst;
 			index_max = index;
 		}
 		lst = lst->next;
+		index++;
 	}
 	return (index_max);
 }
 
 static void	insertion_max(t_list **lsta, t_list **lstb)
 {
-	int		i;
+	int	i;
+	int	lstsize;
 
+	lstsize = ft_lstsize(*lstb);
 	while (*lstb)
 	{
 		i = find_max(*lstb);
-		while (i > 0)
+		if (i <= lstsize/2)
 		{
-			if (i > ft_lstsize(*lstb)/2)
-			{
+			while (i-- > 0)
 				rotate(lstb);
-				i--;
-			}
-			else
-			{
+		}
+		else
+		{
+			while (i-- > 0)
 				reverse_rotate(lstb);
-				i--;
-			}
 		}
 		push(lstb, lsta, 'b');
+		lstsize--;
 	}
 }
 
 void	chunk_base(t_list **lst_a, t_list **lst_b)
 {
 	int	lst_size;
+	int	initial_size;
 	int	nb_chunk;
 	int	i;
 	int	mult;
@@ -72,24 +73,25 @@ void	chunk_base(t_list **lst_a, t_list **lst_b)
 	i = 0;
 	mult = 1;
 	nb_push = 0;
-	lst_size = ft_lstsize(*lst_a);
+	initial_size = ft_lstsize(*lst_a);
+	lst_size = initial_size;
 	if (lst_size <= 100)
 		nb_chunk = 5;
 	else
 		nb_chunk = 11;
-	while(*lst_a)
+	while(mult <= nb_chunk)
 	{
-		while (nb_push <= (lst_size/nb_chunk) * mult)
+		while (nb_push <= (initial_size/nb_chunk) * mult)
 		{
 			temp = *lst_a;
-			while (temp && (temp) -> rank > (lst_size/nb_chunk) * mult)
+			while (temp && (temp) -> rank > (initial_size/nb_chunk) * mult)
 			{
 				temp = temp -> next;
 				i++;
 			}
-			if (i > ft_lstsize(*lst_a)/2)
+			if (i > lst_size / 2)
 			{
-				rank_value = (*lst_a) -> rank;
+				rank_value = temp -> rank;
 				while (*lst_a && ft_lstlast(*lst_a) -> rank != rank_value)
 					reverse_rotate(lst_a);
 				reverse_rotate(lst_a);
@@ -97,12 +99,14 @@ void	chunk_base(t_list **lst_a, t_list **lst_b)
 			}
 			else
 			{
-				rank_value = (*lst_a) -> rank;
+				rank_value = temp -> rank;
 				while (*lst_a && (*lst_a) -> rank != rank_value)
 					rotate(lst_a);
 				push(lst_a, lst_b, 'a');
 			}
+			i = 0;
 			nb_push++;
+			lst_size--;
 		}
 		mult++;
 	}
