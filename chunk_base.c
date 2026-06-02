@@ -40,10 +40,10 @@ static void	insertion_max(t_list **lsta, t_list **lstb)
 
 	while (*lstb)
 	{
-		i = find_max(*lsta);
+		i = find_max(*lstb);
 		while (i > 0)
 		{
-			if (i > ft_lstsize(*lsta)/2)
+			if (i > ft_lstsize(*lstb)/2)
 			{
 				rotate(lstb);
 				i--;
@@ -65,38 +65,44 @@ void	chunk_base(t_list **lst_a, t_list **lst_b)
 	int	i;
 	int	mult;
 	int	rank_value;
-	t_list	*head;
+	int	nb_push;
+	t_list	*temp;
 
 	normalise(lst_a);
 	i = 0;
 	mult = 1;
+	nb_push = 0;
 	lst_size = ft_lstsize(*lst_a);
 	if (lst_size <= 100)
 		nb_chunk = 5;
 	else
 		nb_chunk = 11;
-	head = (*lst_a);
 	while(*lst_a)
 	{
-		while (*lst_a && (*lst_a) -> rank > (lst_size/nb_chunk) * mult)
+		while (nb_push <= (lst_size/nb_chunk) * mult)
 		{
-			(*lst_a) = (*lst_a) -> next;
-			i++;
-		}
-		if (i > ft_lstsize(*lst_a)/2)
-		{
-			rank_value = (*lst_a) -> rank;
-			while (*lst_a && ft_lstlast(*lst_a) -> rank != rank_value)
+			temp = *lst_a;
+			while (temp && (temp) -> rank > (lst_size/nb_chunk) * mult)
+			{
+				temp = temp -> next;
+				i++;
+			}
+			if (i > ft_lstsize(*lst_a)/2)
+			{
+				rank_value = (*lst_a) -> rank;
+				while (*lst_a && ft_lstlast(*lst_a) -> rank != rank_value)
+					reverse_rotate(lst_a);
 				reverse_rotate(lst_a);
-			reverse_rotate(lst_a);
-			push(lst_a, lst_b, 'a');
-		}
-		else
-		{
-			rank_value = (*lst_a) -> rank;
-			while (*lst_a && (*lst_a) -> rank != rank_value)
-				rotate(lst_a);
-			push(lst_a, lst_b, 'a');
+				push(lst_a, lst_b, 'a');
+			}
+			else
+			{
+				rank_value = (*lst_a) -> rank;
+				while (*lst_a && (*lst_a) -> rank != rank_value)
+					rotate(lst_a);
+				push(lst_a, lst_b, 'a');
+			}
+			nb_push++;
 		}
 		mult++;
 	}
