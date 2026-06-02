@@ -53,7 +53,6 @@ static void	insertion_max(t_list **lsta, t_list **lstb)
 			while (i++ < lstsize)
 				reverse_rotate(lstb);
 		}
-		printf ("lstb top: %d\n", (*lstb)->value);
 		push(lstb, lsta, 'b');
 		lstsize--;
 	}
@@ -80,7 +79,7 @@ void	chunk_base(t_list **lst_a, t_list **lst_b)
 		nb_chunk = 5;
 	else
 		nb_chunk = 11;
-	while(mult <= nb_chunk)
+	while(lst_size > 0)
 	{
 		while (nb_push <= (initial_size/nb_chunk) * mult)
 		{
