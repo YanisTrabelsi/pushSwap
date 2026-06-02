@@ -49,7 +49,7 @@ int	main(int argc, char **argv)
 	printf("==LSTA==\n");
 	while (lst_a)
 	{
-		printf("|| %d ||\n", lst_a->value);
+		printf("|| %d || || %d ||\n", lst_a->value, lst_a->rank);
 		lst_a = lst_a->next;
 	}
 	ft_lstclear(&lst_a);

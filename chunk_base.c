@@ -43,16 +43,17 @@ static void	insertion_max(t_list **lsta, t_list **lstb)
 	while (*lstb)
 	{
 		i = find_max(*lstb);
-		if (i <= lstsize/2)
+		if (i <= lstsize / 2)
 		{
 			while (i-- > 0)
 				rotate(lstb);
 		}
 		else
 		{
-			while (i-- > 0)
+			while (i++ < lstsize)
 				reverse_rotate(lstb);
 		}
+		printf ("lstb top: %d\n", (*lstb)->value);
 		push(lstb, lsta, 'b');
 		lstsize--;
 	}
@@ -90,7 +91,7 @@ void	chunk_base(t_list **lst_a, t_list **lst_b)
 				i++;
 			}
 			if (!temp)
-				return ;
+				i = 0;
 			else if (i > lst_size / 2)
 			{
 				rank_value = temp -> rank;
