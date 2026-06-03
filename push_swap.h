@@ -21,6 +21,20 @@ typedef struct s_list
 	struct s_list	*next;
 	struct s_list	*prev;
 }					t_list;
+typedef struct s_bench
+{
+	int				ra;
+	int				rb;
+	int				rr;
+	int				rra;
+	int				rrb;
+	int				rrr;
+	int				pa;
+	int				pb;
+	int				sa;
+	int				sb;
+	int				ss;
+}					t_bench;
 t_list				*ft_lstnew(int value, int rank);
 t_list				*ft_lstlast(t_list *lst);
 void				ft_lstadd_front(t_list **lst, t_list *new);
@@ -36,5 +50,5 @@ void				insertion(t_list **lsta, t_list **lstb);
 long				ft_atoi(const char *nptr);
 int					ft_lstsize(t_list *lst);
 void				normalise(t_list *lst);
-void	chunk_base(t_list **lst_a, t_list **lst_b);
+void				chunk_base(t_list **lst_a, t_list **lst_b);
 #endif
