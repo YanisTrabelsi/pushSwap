@@ -63,6 +63,71 @@ void	chunk_base(t_list **lst_a, t_list **lst_b)
 	int	lst_size;
 	int	initial_size;
 	int	nb_chunk;
+	int	chunk_size;
+	int	chunk_mid;
+	int	i;
+	int	mult;
+	int	rank_value;
+	int	nb_push;
+	t_list	*temp;
+
+	normalise(*lst_a);
+	i = 0;
+	mult = 1;
+	nb_push = 0;
+	initial_size = ft_lstsize(*lst_a);
+	lst_size = initial_size;
+	if (lst_size <= 100)
+		nb_chunk = 5;
+	else
+		nb_chunk = 11;
+	chunk_size = initial_size / nb_chunk;
+	while (mult <= nb_chunk)
+	{
+		chunk_mid = chunk_size * (mult - 1) + 1 + chunk_size / 2;
+		while (nb_push < chunk_size * mult)
+		{
+			temp = *lst_a;
+			while (temp && temp->rank > chunk_size * mult)
+			{
+				temp = temp->next;
+				i++;
+			}
+			if (!temp)
+				i = 0;
+			else if (i > lst_size / 2)
+			{
+				rank_value = temp->rank;
+				while (*lst_a && ft_lstlast(*lst_a)->rank != rank_value)
+					reverse_rotate(lst_a);
+				reverse_rotate(lst_a);
+				push(lst_a, lst_b, 'a');
+				//printf("push\n");
+			}
+			else
+			{
+				rank_value = temp->rank;
+				while (*lst_a && (*lst_a)->rank != rank_value)
+					rotate(lst_a);
+				push(lst_a, lst_b, 'a');
+				//printf("push\n");
+			}
+			if (*lst_b && (*lst_b)->rank < chunk_mid)
+				rotate(lst_b);
+			i = 0;
+			nb_push++;
+			lst_size--;
+		}
+		mult++;
+	}
+	insertion_max(lst_a, lst_b);
+}
+
+/*void	chunk_base(t_list **lst_a, t_list **lst_b)
+{
+	int	lst_size;
+	int	initial_size;
+	int	nb_chunk;
 	int	i;
 	int	mult;
 	int	rank_value;
@@ -98,6 +163,9 @@ void	chunk_base(t_list **lst_a, t_list **lst_b)
 					reverse_rotate(lst_a);
 				reverse_rotate(lst_a);
 				push(lst_a, lst_b, 'a');
+				nb_push++;
+				lst_size--;
+
 			}
 			else
 			{
@@ -105,12 +173,13 @@ void	chunk_base(t_list **lst_a, t_list **lst_b)
 				while (*lst_a && (*lst_a) -> rank != rank_value)
 					rotate(lst_a);
 				push(lst_a, lst_b, 'a');
+				nb_push++;
+				lst_size--;
+
 			}
 			i = 0;
-			nb_push++;
-			lst_size--;
 		}
 		mult++;
 	}
 	insertion_max(lst_a, lst_b);
-}
+}*/
