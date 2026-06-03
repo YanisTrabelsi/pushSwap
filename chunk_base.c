@@ -104,7 +104,7 @@ void	chunk_base(t_list **lst_a, t_list **lst_b)
 	else
 		nb_chunk = 11;
 	chunk_size = initial_size / nb_chunk;
-	while (mult <= nb_chunk)
+	while (mult <= nb_chunk + 1)
 	{
 		chunk_mid = chunk_size * (mult - 1) + (chunk_size / 2) + 1;
 		while (nb_push < chunk_size * mult)
