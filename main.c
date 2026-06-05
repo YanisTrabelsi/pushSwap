@@ -27,10 +27,10 @@ int	main(int argc, char **argv)
 		nb = ft_atoi(argv[i]);
 		if (nb < -2147483648 || nb > 2147483647 || is_duplicate(nb, lst_a))
 			return (1);
-		ft_lstadd_back(&lst_a, ft_lstnew(nb));
+		ft_lstadd_back(&lst_a, ft_lstnew(nb, 0));
 		++i;
 	}
-	insertion(&lst_a, &lst_b);
+	radix(&lst_a, &lst_b);
 	printf("==LSTA==\n");
 	while (lst_a)
 	{

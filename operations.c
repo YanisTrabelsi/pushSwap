@@ -33,13 +33,14 @@ void	swap(t_list	**lst)
 void	push(t_list	**lst_from, t_list	**lst_to, char c)
 {
 	(void)c;
-	ft_lstadd_front(lst_to, ft_lstnew((*lst_from)->value));
+	ft_lstadd_front(lst_to, ft_lstnew((*lst_from)->value, (*lst_from)->rank));
 	ft_lstdelfront(lst_from);
+	//printf("p%c\n", c);
 }
 
 void	rotate(t_list	**lst)
 {
-	ft_lstadd_back(lst, ft_lstnew((*lst)->value));
+	ft_lstadd_back(lst, ft_lstnew((*lst)->value, (*lst)->rank));
 	ft_lstdelfront(lst);
 }
 
@@ -47,7 +48,7 @@ void	reverse_rotate(t_list	**lst)
 {
 	t_list	*temp;
 
-	ft_lstadd_front(lst, ft_lstnew(ft_lstlast(*lst)->value));
+	ft_lstadd_front(lst, ft_lstnew(ft_lstlast(*lst)->value, ft_lstlast(*lst)->rank));
 	temp = ft_lstlast(*lst);
 	if (temp -> prev)
 		temp -> prev -> next = NULL;
