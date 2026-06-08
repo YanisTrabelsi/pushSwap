@@ -58,30 +58,23 @@ static void	insertion_max(t_list **lsta, t_list **lstb)
 	}
 }
 
-// ESSAI NORMINETTE
-/*void	ft_reverse_rotate_chunk()
+static void	ft_reverse_rotate_chunk(t_list **lst_a, int rank_value)
 {
 	while (*lst_a && ft_lstlast(*lst_a)->rank != rank_value)
 		reverse_rotate(lst_a);
 	reverse_rotate(lst_a);
 }
 
-void	ft_rotate_chunk()
-{
-	while (*lst_a && (*lst_a)->rank != rank_value)
-		rotate(lst_a);
-	push(lst_a, lst_b, 'a');
-}*/
-
-static void	ft_push_elem(t_list **lst_a, t_list **lst_b, int chunk_mid, int chunk_max_rank)
+static void	push_elem(t_list **lst_a, t_list **lst_b, int c_mid, int c_max)
 {
 	int		i;
 	int		rank_value;
 	t_list	*temp;
 
+	(void)test;
 	i = 0;
 	temp = *lst_a;
-	while (temp && temp->rank > chunk_max_rank)
+	while (temp && temp->rank > c_max)
 	{
 		temp = temp->next;
 		i++;
@@ -90,22 +83,18 @@ static void	ft_push_elem(t_list **lst_a, t_list **lst_b, int chunk_mid, int chun
 		return ;
 	rank_value = temp->rank;
 	if (i > ft_lstsize(*lst_a) / 2)
-	{
-		while (*lst_a && ft_lstlast(*lst_a)->rank != rank_value)
-			reverse_rotate(lst_a);
-		reverse_rotate(lst_a);
-	}
+		ft_reverse_rotate_chunk(lst_a, rank_value);
 	else
 	{
 		while (*lst_a && (*lst_a)->rank != rank_value)
 			rotate(lst_a);
 	}
 	push(lst_a, lst_b, 'a');
-	if (*lst_b && (*lst_b)->rank < chunk_mid)
+	if (*lst_b && (*lst_b)->rank < c_mid)
 		rotate(lst_b);
 }
 
-static void	ft_chunkbase_loop(t_list **lst_a, t_list **lst_b, int chunk_size, int nb_chunk)
+static void	chunk_loop(t_list **lst_a, t_list **lst_b, int c_size, int nb_c)
 {
 	int	mult;
 	int	nb_push;
@@ -115,12 +104,12 @@ static void	ft_chunkbase_loop(t_list **lst_a, t_list **lst_b, int chunk_size, in
 	mult = 1;
 	nb_push = 0;
 	lst_size = ft_lstsize(*lst_a);
-	while (mult <= nb_chunk + 1)
+	while (mult <= nb_c + 1)
 	{
-		chunk_mid = chunk_size * (mult - 1) + (chunk_size / 2) + 1;
-		while (nb_push < chunk_size * mult && *lst_a)
+		chunk_mid = c_size * (mult - 1) + (c_size / 2) + 1;
+		while (nb_push < c_size * mult && *lst_a)
 		{
-			ft_push_elem(lst_a, lst_b, chunk_mid, chunk_size * mult);
+			push_elem(lst_a, lst_b, chunk_mid, c_size * mult);
 			nb_push++;
 			lst_size--;
 		}
@@ -141,6 +130,6 @@ void	chunk_base(t_list **lst_a, t_list **lst_b)
 	else
 		nb_chunk = 11;
 	chunk_size = initial_size / nb_chunk;
-	ft_chunkbase_loop(lst_a, lst_b, chunk_size, nb_chunk);
+	chunk_loop(lst_a, lst_b, chunk_size, nb_chunk);
 	insertion_max(lst_a, lst_b);
 }
