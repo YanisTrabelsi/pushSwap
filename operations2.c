@@ -47,7 +47,7 @@ void	reverse_rotate_b(t_list	**lst)
 	if (temp -> prev)
 		temp -> prev -> next = NULL;
 	free (temp);
-	printf("rb\n");
+	printf("rrb\n");
 	bench_rotate(4);
 }
 
