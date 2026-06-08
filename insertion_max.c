@@ -34,7 +34,7 @@ static int	find_max(t_list *lst)
 	return (index_max);
 }
 
-void	insertion_max(t_list **lsta, t_list **lstb, t_bench *count)
+void	insertion_max(t_list **lsta, t_list **lstb)
 {
 	int	i;
 	int	lstsize;
