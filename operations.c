@@ -64,7 +64,6 @@ void	swap_swap(t_list **lst_a, t_list **lst_b)
 	bench_double(3);
 }
 
-
 void	push(t_list **lst_from, t_list **lst_to, char c)
 {
 	ft_lstadd_front(lst_to, ft_lstnew((*lst_from)->value, (*lst_from)->rank));
@@ -80,12 +79,14 @@ void	reverse_rotate_rotate(t_list **lst_a, t_list **lst_b)
 {
 	t_list	*temp;
 
-	ft_lstadd_front(lst_a, ft_lstnew(ft_lstlast(*lst_a)->value, ft_lstlast(*lst_a)->rank));
+	ft_lstadd_front(lst_a, ft_lstnew(ft_lstlast(*lst_a)->value,
+			ft_lstlast(*lst_a)->rank));
 	temp = ft_lstlast(*lst_a);
 	if (temp -> prev)
 		temp -> prev -> next = NULL;
 	free (temp);
-		ft_lstadd_front(lst_b, ft_lstnew(ft_lstlast(*lst_b)->value, ft_lstlast(*lst_b)->rank));
+	ft_lstadd_front(lst_b, ft_lstnew(ft_lstlast(*lst_b)->value,
+			ft_lstlast(*lst_b)->rank));
 	temp = ft_lstlast(*lst_b);
 	if (temp -> prev)
 		temp -> prev -> next = NULL;

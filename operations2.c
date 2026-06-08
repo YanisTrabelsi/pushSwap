@@ -42,7 +42,8 @@ void	reverse_rotate_b(t_list	**lst)
 {
 	t_list	*temp;
 
-	ft_lstadd_front(lst, ft_lstnew(ft_lstlast(*lst)->value, ft_lstlast(*lst)->rank));
+	ft_lstadd_front(lst, ft_lstnew(ft_lstlast(*lst)->value,
+			ft_lstlast(*lst)->rank));
 	temp = ft_lstlast(*lst);
 	if (temp -> prev)
 		temp -> prev -> next = NULL;
@@ -55,7 +56,8 @@ void	reverse_rotate_a(t_list	**lst)
 {
 	t_list	*temp;
 
-	ft_lstadd_front(lst, ft_lstnew(ft_lstlast(*lst)->value, ft_lstlast(*lst)->rank));
+	ft_lstadd_front(lst, ft_lstnew(ft_lstlast(*lst)->value,
+			ft_lstlast(*lst)->rank));
 	temp = ft_lstlast(*lst);
 	if (temp -> prev)
 		temp -> prev -> next = NULL;
@@ -63,4 +65,3 @@ void	reverse_rotate_a(t_list	**lst)
 	printf("rra\n");
 	bench_rotate(3);
 }
-
