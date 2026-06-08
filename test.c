@@ -76,79 +76,81 @@ void	ft_rotate_chunk()
 	push(lst_a, lst_b, 'a');
 }
 
-ft_chunk_sort_mid()
+static void	ft_push_elem(t_list **lst_a, t_list **lst_b, int chunk_mid, int chunk_max_rank)
 {
-	while (temp && temp->rank > chunk_size * mult)
+	int		i;
+	int		rank_value;
+	t_list	*temp;
+
+	i = 0;
+	temp = *lst_a;
+	while (temp && temp->rank > chunk_max_rank)
 	{
 		temp = temp->next;
 		i++;
 	}
 	if (!temp)
-		i = 0;
-	else if (i > lst_size / 2)
+		return ;
+	rank_value = temp->rank;
+	if (i > ft_lstsize(*lst_a) / 2)
 	{
-		rank_value = temp->rank;
 		while (*lst_a && ft_lstlast(*lst_a)->rank != rank_value)
 			reverse_rotate(lst_a);
 		reverse_rotate(lst_a);
-		push(lst_a, lst_b, 'a');
 	}
 	else
 	{
-		rank_value = temp->rank;
 		while (*lst_a && (*lst_a)->rank != rank_value)
 			rotate(lst_a);
-		push(lst_a, lst_b, 'a');
 	}
+	push(lst_a, lst_b, 'a');
 	if (*lst_b && (*lst_b)->rank < chunk_mid)
 		rotate(lst_b);
-	i = 0;
-	nb_push++;
-	lst_size--;
 }
 
-void	ft_chunk_sort(t_list **lst_a, t_list **lst_b, int chunk_size, int nb_chunk)
+static void	ft_chunk_loop(t_list **lst_a, t_list **lst_b, int chunk_size, int nb_chunk)
 {
+	int	mult;
+	int	nb_push;
+	int	chunk_mid;
+	int	lst_size;
+
+	mult = 1;
+	nb_push = 0;
+	lst_size = ft_lstsize(*lst_a);
 	while (mult <= nb_chunk + 1)
 	{
 		chunk_mid = chunk_size * (mult - 1) + (chunk_size / 2) + 1;
-		while (nb_push < chunk_size * mult)
+		while (nb_push < chunk_size * mult && *lst_a)
 		{
-			temp = *lst_a;
-			while (temp && temp->rank > chunk_size * mult)
-			{
-				temp = temp->next;
-				i++;
-			}
-			if (!temp)
-				i = 0;
-			else if (i > lst_size / 2)
-			{
-				rank_value = temp->rank;
-				while (*lst_a && ft_lstlast(*lst_a)->rank != rank_value)
-					reverse_rotate(lst_a);
-				reverse_rotate(lst_a);
-				push(lst_a, lst_b, 'a');
-			}
-			else
-			{
-				rank_value = temp->rank;
-				while (*lst_a && (*lst_a)->rank != rank_value)
-					rotate(lst_a);
-				push(lst_a, lst_b, 'a');
-			}
-			if (*lst_b && (*lst_b)->rank < chunk_mid)
-				rotate(lst_b);
-			i = 0;
+			ft_push_elem(lst_a, lst_b, chunk_mid, chunk_size * mult);
 			nb_push++;
 			lst_size--;
 		}
 		mult++;
 	}
 }
-// ESSAI NORMINETTE
 
 void	chunk_base(t_list **lst_a, t_list **lst_b)
+{
+	int	initial_size;
+	int	nb_chunk;
+	int	chunk_size;
+
+	normalise(*lst_a);
+	initial_size = ft_lstsize(*lst_a);
+	if (initial_size <= 100)
+		nb_chunk = 5;
+	else
+		nb_chunk = 11;
+	chunk_size = initial_size / nb_chunk;
+	ft_chunk_loop(lst_a, lst_b, chunk_size, nb_chunk);
+	insertion_max(lst_a, lst_b);
+}
+
+// ESSAI NORMINETTE
+
+/*void	chunk_base(t_list **lst_a, t_list **lst_b)
 {
 	int	lst_size;
 	int	initial_size;
@@ -184,7 +186,7 @@ void	chunk_base(t_list **lst_a, t_list **lst_b)
 				i++;
 			}
 			if (!temp)
-				i = 0;
+				break;
 			else if (i > lst_size / 2)
 			{
 				rank_value = temp->rank;
@@ -208,7 +210,6 @@ void	chunk_base(t_list **lst_a, t_list **lst_b)
 		}
 		mult++;
 	}
-	/*
 	// DEBUG
 	temp = *lst_b;
 	printf("||| LST_B |||\n");
@@ -218,8 +219,8 @@ void	chunk_base(t_list **lst_a, t_list **lst_b)
 		temp = temp->next;
 	}
 	// DEBUG
-	*/
+
 	insertion_max(lst_a, lst_b);
 	//printf ("pa:%d\npb:%d\nrra:%d\nrrb:%d\nra:%d\nrb:%d\n", count->pa, count->pb, count->rra, count->rrb, count->ra, count->rb);
 	//free(count);
-}
+}*/
