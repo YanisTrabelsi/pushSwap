@@ -12,23 +12,54 @@
 
 #include "push_swap.h"
 
-t_bench	struct_define(void)
+void	bench_rotate(int i)
 {
-	t_bench	count;
+	static	int ra;
+	static	int rb;
+	static	int rra;
+	static	int rrb;
 
-	count = malloc(sizeof(t_bench));
-	if (!count)
-		return ;
-	count->ra = 0;
-	count->rb = 0;
-	count->rr = 0;
-	count->rra = 0;
-	count->rrb = 0;
-	count->rrr = 0;
-	count->pa = 0;
-	count->pb = 0;
-	count->sa = 0;
-	count->sb = 0;
-	count->ss = 0;
-	return (count);
+	if	(i == 1)
+		ra++;
+	if (i == 2)
+		rb++;
+	if (i == 3)
+		rra++;
+	if (i == 4)
+		rrb++;
+	if (i == 0)
+		//printf ("all");
+}
+
+void	bench_pushswap(int i)
+{
+	static	int sa;
+	static	int sb;
+	static	int pa;
+	static	int pb;
+	if	(i == 1)
+		sa++;
+	if (i == 2)
+		sb++;
+	if (i == 3)
+		pa++;
+	if (i == 4)
+		pb++;
+	if (i == 0)
+		//printf ("all");
+}
+
+void	bench_double(int i)
+{
+	static	int rr;
+	static	int rrr;
+	static	int ss;
+	if	(i == 1)
+		rr++;
+	if (i == 2)
+		rrr++;
+	if (i == 3)
+		ss++;
+	if (i == 0)
+		//printf ("all");	
 }
