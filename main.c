@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
+#include <stdio.h>
 
 int	main(int argc, char **argv)
 {
@@ -31,10 +32,9 @@ int	main(int argc, char **argv)
 		++i;
 	}
 	radix(&lst_a, &lst_b);
-	printf("==LSTA==\n");
 	while (lst_a)
 	{
-		printf("|| %d ||\n", lst_a->value);
+		printf("%d\n", lst_a->value);
 		lst_a = lst_a->next;
 	}
 }

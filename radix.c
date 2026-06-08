@@ -13,23 +13,45 @@
 
 static void	bit_check(t_list **lst_a, t_list **lst_b)
 {
-	t_list	*head;
+	int	size_a;
+	int	size_b;
 
-	head = *lst_a;
-	while (head)
+	size_a = ft_lstsize(*lst_a);
+	while (size_a > 0)
 	{
-		if (head->rank & 1)
+		if ((*lst_a)->rank & 1)
 			rotate(lst_a);
 		else
 			push(lst_a, lst_b, 'b');
-		head = head->next;
+		--size_a;
+	}
+	size_b = ft_lstsize(*lst_b);
+	while (size_b > 0)
+	{
+		push(lst_b, lst_a, 'a');
+		--size_b;
+	}
+}
+
+static void	right_shift(t_list *lst)
+{
+	while (lst)
+	{
+		lst->rank = lst->rank >> 1;
+		lst = lst->next;
 	}
 }
 
 void	radix(t_list **lst_a, t_list **lst_b)
 {
-	(void)lst_b;
+	int	i;
+
+	i = 32;
 	normalise(*lst_a);
-	bit_check(lst_a, lst_b);
-	printf("bit check done\n");
+	while (i > 0)
+	{
+		bit_check(lst_a, lst_b);
+		right_shift(*lst_a);
+		--i;
+	}
 }
