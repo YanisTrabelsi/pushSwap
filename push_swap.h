@@ -21,21 +21,49 @@ typedef struct s_list
 	struct s_list	*next;
 	struct s_list	*prev;
 }					t_list;
+
+/* utils_lst.c */
 t_list				*ft_lstnew(int value, int rank);
 t_list				*ft_lstlast(t_list *lst);
 void				ft_lstadd_front(t_list **lst, t_list *new);
 void				ft_lstadd_back(t_list **lst, t_list *new);
 void				ft_lstdelfront(t_list **lst);
-float				ft_disorder(t_list *lst);
-int					is_duplicate(int nb, t_list *lst);
-void				swap(t_list	**lst);
-void				push(t_list	**lst_from, t_list	**lst_to, char c);
-void				rotate(t_list	**lst);
-void				reverse_rotate(t_list	**lst);
-void				insertion(t_list **lsta, t_list **lstb);
-long				ft_atoi(const char *nptr);
 int					ft_lstsize(t_list *lst);
+
+/* parsing.c */
+long				ft_atoi(const char *nptr);
+int					is_duplicate(int nb, t_list *lst);
+float				ft_disorder(t_list *lst);
+
+/* normalise.c */
 void				normalise(t_list *lst);
-void				chunk_base(t_list **lst_a, t_list **lst_b);
+
+/* operations.c */
+void				swap_a(t_list **lst, int c);
+void				swap_b(t_list **lst, int c);
+void				swap_swap(t_list **lst_a, t_list **lst_b);
+void				push(t_list **lst_from, t_list **lst_to, char c);
+void				reverse_rotate_rotate(t_list **lst_a, t_list **lst_b);
+
+/* operations2.c */
+void				rotate_a(t_list **lst);
+void				rotate_b(t_list **lst);
+void				rotate_rotate(t_list **lst_a, t_list **lst_b);
+void				reverse_rotate_a(t_list **lst);
+void				reverse_rotate_b(t_list **lst);
+
+/* bench.c */
+void				bench_rotate(int i);
+void				bench_pushswap(int i);
+void				bench_double(int i);
+
+/* insertion.c */
+void				insertion(t_list **lsta, t_list **lstb);
+
+/* insertion_max.c */
 void				insertion_max(t_list **lsta, t_list **lstb, t_bench *count);
+
+/* chunk_base.c */
+void				chunk_base(t_list **lst_a, t_list **lst_b);
+
 #endif

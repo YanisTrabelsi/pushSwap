@@ -25,7 +25,6 @@ static void	push_elem(t_list **lst_a, t_list **lst_b, int c_mid, int c_max)
 	int		rank_value;
 	t_list	*temp;
 
-	(void)test;
 	i = 0;
 	temp = *lst_a;
 	while (temp && temp->rank > c_max)
