@@ -42,7 +42,7 @@ void	insertion(t_list **lsta, t_list **lstb)
 		i = find_small(*lsta);
 		while (i > 0)
 		{
-			rotate(lsta);
+			rotate_a(lsta);
 			--i;
 		}
 		push(lsta, lstb, 'a');

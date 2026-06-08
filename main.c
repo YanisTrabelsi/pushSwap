@@ -37,4 +37,7 @@ int	main(int argc, char **argv)
 		printf("%d\n", lst_a->value);
 		lst_a = lst_a->next;
 	}
+	bench_rotate(0);
+	bench_pushswap(0);
+	bench_double(0);
 }

@@ -20,7 +20,7 @@ static void	bit_check(t_list **lst_a, t_list **lst_b)
 	while (size_a > 0)
 	{
 		if ((*lst_a)->rank & 1)
-			rotate(lst_a);
+			rotate_a(lst_a);
 		else
 			push(lst_a, lst_b, 'b');
 		--size_a;
