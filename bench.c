@@ -28,7 +28,7 @@ void	bench_rotate(int i)
 	if (i == 4)
 		rrb++;
 	if (i == 0)
-		//printf ("all");
+		printf("ra:%d\nrb:%d\nrra:%d\nrrb:%d\n", ra, rb, rra, rrb);
 }
 
 void	bench_pushswap(int i)
@@ -46,7 +46,7 @@ void	bench_pushswap(int i)
 	if (i == 4)
 		pb++;
 	if (i == 0)
-		//printf ("all");
+		printf ("sa:%d\nsb:%d\npa:%d\npb:%d\n", sa, sb, pa, pb);
 }
 
 void	bench_double(int i)
@@ -61,5 +61,5 @@ void	bench_double(int i)
 	if (i == 3)
 		ss++;
 	if (i == 0)
-		//printf ("all");	
+		printf ("rr:%d\nrrr:%d\nss:%d\n", rr, rrr, ss);
 }

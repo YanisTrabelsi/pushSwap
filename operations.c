@@ -29,8 +29,9 @@ void	swap_a(t_list **lst, int c)
 	(*lst)->prev = next_node;
 	next_node->prev = temp;
 	*lst = next_node;
-	//if (c == 0)
-	//	printf("sa\n");
+	if (c == 0)
+		printf("sa\n");
+	bench_pushswap(1);
 }
 
 void	swap_b(t_list **lst, int c)
@@ -50,15 +51,17 @@ void	swap_b(t_list **lst, int c)
 	(*lst)->prev = next_node;
 	next_node->prev = temp;
 	*lst = next_node;
-	//if (c == 0)
-	//	printf("sb\n");
+	if (c == 0)
+		printf("sb\n");
+	bench_pushswap(2);
 }
 
 void	swap_swap(t_list **lst_a, t_list **lst_b)
 {
-	swap_a(lst_a, '1');
-	swap_b(lst_b, '1');
-	//printf("ss\n");
+	swap_a(lst_a, 1);
+	swap_b(lst_b, 1);
+	printf("ss\n");
+	bench_double(3);
 }
 
 
@@ -67,11 +70,11 @@ void	push(t_list **lst_from, t_list **lst_to, char c)
 	(void)c;
 	ft_lstadd_front(lst_to, ft_lstnew((*lst_from)->value, (*lst_from)->rank));
 	ft_lstdelfront(lst_from);
-	//printf("p%c\n", c);
-	//if (c == 'a')
-	//	...pa;
-	//else if (c == 'b')
-	//	...pb;
+	printf("p%c\n", c);
+	if (c == 'a')
+		bench_pushswap(3);
+	else if (c == 'b')
+		bench_pushswap(4);
 }
 
 void	reverse_rotate_rotate(t_list **lst_a, t_list **lst_b)
@@ -88,6 +91,6 @@ void	reverse_rotate_rotate(t_list **lst_a, t_list **lst_b)
 	if (temp -> prev)
 		temp -> prev -> next = NULL;
 	free (temp);
-	//printf("rrr\n")
-
+	printf("rrr\n");
+	bench_double(2);
 }
