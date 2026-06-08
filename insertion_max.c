@@ -46,21 +46,14 @@ void	insertion_max(t_list **lsta, t_list **lstb)
 		if (i <= lstsize / 2)
 		{
 			while (i-- > 0)
-			{
 				rotate(lstb);
-				count->rb = count->rb + 1;
-			}
 		}
 		else
 		{
 			while (i++ < lstsize)
-			{
 				reverse_rotate(lstb);
-				count->rrb = count->rrb + 1;
-			}
 		}
 		push(lstb, lsta, 'b');
-		count->pb = count->pb + 1;
 		lstsize--;
 	}
 }
