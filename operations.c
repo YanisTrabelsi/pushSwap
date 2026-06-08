@@ -67,7 +67,6 @@ void	swap_swap(t_list **lst_a, t_list **lst_b)
 
 void	push(t_list **lst_from, t_list **lst_to, char c)
 {
-	(void)c;
 	ft_lstadd_front(lst_to, ft_lstnew((*lst_from)->value, (*lst_from)->rank));
 	ft_lstdelfront(lst_from);
 	printf("p%c\n", c);
