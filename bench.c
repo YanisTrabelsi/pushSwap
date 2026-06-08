@@ -14,12 +14,12 @@
 
 void	bench_rotate(int i)
 {
-	static	int ra;
-	static	int rb;
-	static	int rra;
-	static	int rrb;
+	static int	ra;
+	static int	rb;
+	static int	rra;
+	static int	rrb;
 
-	if	(i == 1)
+	if (i == 1)
 		ra++;
 	if (i == 2)
 		rb++;
@@ -33,11 +33,12 @@ void	bench_rotate(int i)
 
 void	bench_pushswap(int i)
 {
-	static	int sa;
-	static	int sb;
-	static	int pa;
-	static	int pb;
-	if	(i == 1)
+	static int	sa;
+	static int	sb;
+	static int	pa;
+	static int	pb;
+
+	if (i == 1)
 		sa++;
 	if (i == 2)
 		sb++;
@@ -51,10 +52,11 @@ void	bench_pushswap(int i)
 
 void	bench_double(int i)
 {
-	static	int rr;
-	static	int rrr;
-	static	int ss;
-	if	(i == 1)
+	static int	rr;
+	static int	rrr;
+	static int	ss;
+
+	if (i == 1)
 		rr++;
 	if (i == 2)
 		rrr++;
