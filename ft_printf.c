@@ -15,7 +15,7 @@
 static int	ft_putfloat(int fd, int nb)
 {
 	int	len;
-	
+
 	len = 0;
 	if (nb < 0)
 	{
@@ -41,7 +41,7 @@ static int	ft_putfloat(int fd, int nb)
 	return (len);
 }
 
-static	int ft_float_to_int(int fd, float f)
+static int	ft_float_to_int(int fd, float f)
 {
 	int	nb;
 	int	len;
