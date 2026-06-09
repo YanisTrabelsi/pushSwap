@@ -52,11 +52,9 @@ static void	chunk_loop(t_list **lst_a, t_list **lst_b, int c_size, int nb_c)
 	int	mult;
 	int	nb_push;
 	int	chunk_mid;
-	int	lst_size;
 
 	mult = 1;
 	nb_push = 0;
-	lst_size = ft_lstsize(*lst_a);
 	while (mult <= nb_c + 1)
 	{
 		chunk_mid = c_size * (mult - 1) + (c_size / 2) + 1;
@@ -64,7 +62,6 @@ static void	chunk_loop(t_list **lst_a, t_list **lst_b, int c_size, int nb_c)
 		{
 			push_elem(lst_a, lst_b, chunk_mid, c_size * mult);
 			nb_push++;
-			lst_size--;
 		}
 		mult++;
 	}
