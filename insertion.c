@@ -49,6 +49,7 @@ void	insertion(t_list **lsta, t_list **lstb)
 		}
 		else
 		{
+
 			while (i++ < lstsize)
 				reverse_rotate_a(lsta);
 		}
