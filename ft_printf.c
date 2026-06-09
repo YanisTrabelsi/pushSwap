@@ -12,6 +12,45 @@
 
 #include "push_swap.h"
 
+static int	ft_putfloat(int fd, int nb)
+{
+	int	len;
+	
+	len = 0;
+	if (nb < 0)
+	{
+		nb *= -1;
+		write (fd, "-", 1);
+		len ++;
+	}
+	if (nb >= 10)
+	{
+		len += ft_putnbr(nb / 10);
+		if (nb >= 100 && nb <= 999)
+			write(fd, ".", 1);
+		nb = (nb % 10) + '0';
+		write(fd, &nb, 1);
+		len++;
+	}
+	else
+	{
+		nb += '0';
+		write(fd, &nb, 1);
+		len++;
+	}
+	return (len);
+}
+
+static	int ft_float_to_int(int fd, float f)
+{
+	int	nb;
+	int	len;
+
+	nb = (int)(f * 100);
+	len = ft_putfloat(fd, nb);
+	return (len);
+}
+
 static int	special_char(int fd, const char *str, int i, va_list list)
 {
 	int	len;
@@ -31,7 +70,7 @@ static int	special_char(int fd, const char *str, int i, va_list list)
 	else if (str[i] == 'd' || str[i] == 'i')
 		len += ft_putnbr(fd, va_arg(list, int));
 	else if (str[i] == 'f')
-		len += ft_putfloat(fd, va_arg(list, float));
+		len += ft_float_to_int(fd, va_arg(list, float));
 	else if (str[i] == 'u')
 		len += ft_putnbr(fd, va_arg(list, unsigned int));
 	else if (str[i] == 'x')
