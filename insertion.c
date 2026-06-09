@@ -22,33 +22,39 @@ static int	find_small(t_list *lst)
 	small = lst;
 	while (lst)
 	{
-		++index;
 		if (small->value > lst->value)
 		{
 			small = lst;
 			index_min = index;
 		}
+		++index;
 		lst = lst->next;
 	}
-	return (index_min - 1);
+	return (index_min);
 }
 
 void	insertion(t_list **lsta, t_list **lstb)
 {
-	int		i;
+	int	i;
+	int	lstsize;
 
+	lstsize = ft_lstsize(*lsta);
 	while (*lsta)
 	{
 		i = find_small(*lsta);
-		while (i > 0)
+		if (i <= lstsize / 2)
 		{
-			rotate_a(lsta);
-			--i;
+			while (i-- > 0)
+				rotate_a(lsta);
+		}
+		else
+		{
+			while (i++ < lstsize)
+				reverse_rotate_a(lsta);
 		}
 		push(lsta, lstb, 'a');
+		lstsize--;
 	}
 	while (*lstb)
-	{
 		push(lstb, lsta, 'b');
-	}
 }

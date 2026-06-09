@@ -31,12 +31,14 @@ int	main(int argc, char **argv)
 		ft_lstadd_back(&lst_a, ft_lstnew(nb, 0));
 		++i;
 	}
-	radix(&lst_a, &lst_b);
+	insertion(&lst_a, &lst_b);
+	/*
 	while (lst_a)
 	{
 		printf("%d\n", lst_a->value);
 		lst_a = lst_a->next;
 	}
+	*/
 	bench_rotate(0);
 	bench_pushswap(0);
 	bench_double(0);
