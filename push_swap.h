@@ -66,4 +66,14 @@ void				insertion_max(t_list **lsta, t_list **lstb, t_bench *count);
 /* chunk_base.c */
 void				chunk_base(t_list **lst_a, t_list **lst_b);
 
+/* ft_printf.c */
+int					ft_printf(int fd, const char *str, ...);
+
+/* utils_pritf */
+int					ft_putnbr(int fd, long int nb);
+int					ft_putstr(int fd, char *s);
+int					ft_putchar(int fd, int c);
+int					ft_hexa_p(int fd, unsigned long int nb, char *base);
+int					ft_pointer(int fd, unsigned long int p);
+
 #endif
