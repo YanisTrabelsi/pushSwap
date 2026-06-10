@@ -33,6 +33,7 @@ int					ft_lstsize(t_list *lst);
 /* parsing.c */
 long				ft_atoi(const char *nptr);
 int					is_duplicate(int nb, t_list *lst);
+int					strcmp(char *str1, char *str2);
 float				ft_disorder(t_list *lst);
 
 /* normalise.c */
@@ -56,6 +57,8 @@ void				reverse_rotate_b(t_list **lst);
 int					bench_rotate(int i);
 int					bench_pushswap(int i);
 int					bench_double(int i);
+void				display_bench(float disorder, char *arg, t_list **lst_a,
+						t_list **lst_b);
 
 /* insertion.c */
 void				insertion(t_list **lsta, t_list **lstb);

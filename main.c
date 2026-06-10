@@ -11,27 +11,13 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-static int	strcmp(char *str1, char *str2)
-{
-	int	i;
-
-	i = 0;
-	if (str1 == NULL || str2 == NULL)
-		return (0);
-	while (str1[i] && str2[i])
-	{
-		if (str1[i] == str2[i])
-			++i;
-		else
-			return (0);
-	}
-	return (1);
-}
-
-static void	argparser(char *arg, t_list **lst_a, t_list **lst_b)
+static void	argparser(char *arg, char *next_arg, t_list **lst_a, t_list **lst_b)
 {
 	float	disorder;
 
+	disorder = ft_disorder(*lst_a);
+	if (strcmp(arg, "--bench") == 1)
+		return (display_bench(disorder, next_arg, lst_a, lst_b));
 	if (strcmp(arg, "--simple") == 1)
 		return (insertion(lst_a, lst_b));
 	if (strcmp(arg, "--medium") == 1)
@@ -40,7 +26,6 @@ static void	argparser(char *arg, t_list **lst_a, t_list **lst_b)
 		return (radix(lst_a, lst_b));
 	else
 	{
-		disorder = ft_disorder(*lst_a);
 		if (disorder < 0.2f)
 			return (insertion(lst_a, lst_b));
 		if (disorder < 0.5f)
@@ -53,6 +38,7 @@ static void	argparser(char *arg, t_list **lst_a, t_list **lst_b)
 int	main(int argc, char **argv)
 {
 	int		i;
+	int		nb_op;
 	long	nb;
 	t_list	*lst_a;
 	t_list	*lst_b;
@@ -69,5 +55,5 @@ int	main(int argc, char **argv)
 		ft_lstadd_back(&lst_a, ft_lstnew(nb, 0));
 		++i;
 	}
-	argparser(argv[i], &lst_a, &lst_b);
+	argparser(argv[i], argv[i + 1], &lst_a, &lst_b);
 }

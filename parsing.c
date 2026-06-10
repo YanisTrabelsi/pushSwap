@@ -37,6 +37,23 @@ int	is_duplicate(int nb, t_list *lst)
 	return (0);
 }
 
+int	strcmp(char *str1, char *str2)
+{
+	int	i;
+
+	i = 0;
+	if (str1 == NULL || str2 == NULL)
+		return (0);
+	while (str1[i] && str2[i])
+	{
+		if (str1[i] == str2[i])
+			++i;
+		else
+			return (0);
+	}
+	return (1);
+}
+
 float	ft_disorder(t_list *lst)
 {
 	float	disorder;
