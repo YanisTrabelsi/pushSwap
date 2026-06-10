@@ -11,19 +11,43 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-static void	ft_lstclear(t_list **lst)
+static int	strcmp(char *str1, char *str2)
 {
-	t_list	*first;
-	t_list	*next;
+	int	i;
 
-	first = *lst;
-	while (first)
+	i = 0;
+	if (str1 == NULL || str2 == NULL)
+		return (0);
+	while (str1[i] && str2[i])
 	{
-		next = first -> next;
-		free(first);
-		first = next;
+		if (str1[i] == str2[i])
+			++i;
+		else
+			return (0);
 	}
-	*lst = NULL;
+	return (1);
+}
+
+static void	argparser(char *arg, t_list **lst_a, t_list **lst_b)
+{
+	float	disorder;
+
+	if (strcmp(arg, "--simple") == 1)
+		return (insertion(lst_a, lst_b));
+	if (strcmp(arg, "--medium") == 1)
+		return (chunk_base(lst_a, lst_b));
+	if (strcmp(arg, "--complex") == 1)
+		return (radix(lst_a, lst_b));
+	else
+	{
+		disorder = ft_disorder(*lst_a);
+		if (disorder < 0.2f)
+			return (insertion(lst_a, lst_b));
+		if (disorder < 0.5f)
+			return (chunk_base(lst_a, lst_b));
+		else 
+			return (radix(lst_a, lst_b));
+	}
 }
 
 int	main(int argc, char **argv)
@@ -37,7 +61,7 @@ int	main(int argc, char **argv)
 	i = 1;
 	lst_a = NULL;
 	lst_b = NULL;
-	while (argv[i])
+	while (argv[i] && argv[i][1] != '-')
 	{
 		nb = ft_atoi(argv[i]);
 		if (nb < -2147483648 || nb > 2147483647 || is_duplicate(nb, lst_a))
@@ -45,14 +69,5 @@ int	main(int argc, char **argv)
 		ft_lstadd_back(&lst_a, ft_lstnew(nb, 0));
 		++i;
 	}
-	chunk_base(&lst_a, &lst_b);
-	printf("==LSTA==\n");
-	while (lst_a)
-	{
-		printf("|| %d || || %d ||\n", lst_a->value, lst_a->rank);
-		lst_a = lst_a->next;
-	}
-	ft_lstclear(&lst_a);
-	ft_lstclear(&lst_b);
-	return (0);
+	argparser(argv[i], &lst_a, &lst_b);
 }

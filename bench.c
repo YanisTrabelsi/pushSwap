@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	bench_rotate(int i)
+int	bench_rotate(int i)
 {
 	static int	ra;
 	static int	rb;
@@ -28,10 +28,11 @@ void	bench_rotate(int i)
 	if (i == 4)
 		rrb++;
 	if (i == 0)
-		printf("ra:%d\nrb:%d\nrra:%d\nrrb:%d\n", ra, rb, rra, rrb);
+		ft_printf(2, "ra:%d\nrb:%d\nrra:%d\nrrb:%d\n", ra, rb, rra, rrb);
+	return (ra + rb + rra + rrb);
 }
 
-void	bench_pushswap(int i)
+int	bench_pushswap(int i)
 {
 	static int	sa;
 	static int	sb;
@@ -47,10 +48,11 @@ void	bench_pushswap(int i)
 	if (i == 4)
 		pb++;
 	if (i == 0)
-		printf ("sa:%d\nsb:%d\npa:%d\npb:%d\n", sa, sb, pa, pb);
+		ft_printf(2, "sa:%d\nsb:%d\npa:%d\npb:%d\n", sa, sb, pa, pb);
+	return (sa + sb + pa + pb);
 }
 
-void	bench_double(int i)
+int	bench_double(int i)
 {
 	static int	rr;
 	static int	rrr;
@@ -63,5 +65,6 @@ void	bench_double(int i)
 	if (i == 3)
 		ss++;
 	if (i == 0)
-		printf ("rr:%d\nrrr:%d\nss:%d\n", rr, rrr, ss);
+		ft_printf(2, "rr:%d\nrrr:%d\nss:%d\n", rr, rrr, ss);
+	return (rr + rrr + ss);
 }
