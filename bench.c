@@ -28,7 +28,7 @@ int	bench_rotate(int i)
 	if (i == 4)
 		rrb++;
 	if (i == 0)
-		ft_printf(2, "ra:%d\nrb:%d\nrra:%d\nrrb:%d\n", ra, rb, rra, rrb);
+		ft_printf(2, "ra:%d rb:%d rra:%d rrb:%d\n", ra, rb, rra, rrb);
 	return (ra + rb + rra + rrb);
 }
 
@@ -48,7 +48,7 @@ int	bench_pushswap(int i)
 	if (i == 4)
 		pb++;
 	if (i == 0)
-		ft_printf(2, "sa:%d\nsb:%d\npa:%d\npb:%d\n", sa, sb, pa, pb);
+		ft_printf(2, "sa:%d sb:%d pa:%d pb:%d\n", sa, sb, pa, pb);
 	return (sa + sb + pa + pb);
 }
 
@@ -65,6 +65,6 @@ int	bench_double(int i)
 	if (i == 3)
 		ss++;
 	if (i == 0)
-		ft_printf(2, "rr:%d\nrrr:%d\nss:%d\n", rr, rrr, ss);
+		ft_printf(2, "rr:%d rrr:%d ss:%d\n", rr, rrr, ss);
 	return (rr + rrr + ss);
 }
