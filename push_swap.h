@@ -33,7 +33,7 @@ int					ft_lstsize(t_list *lst);
 /* parsing.c */
 long				ft_atoi(const char *nptr);
 int					is_duplicate(int nb, t_list *lst);
-int					strcmp(char *str1, char *str2);
+int					ft_strcmp(char *str1, char *str2);
 float				ft_disorder(t_list *lst);
 
 /* normalise.c */

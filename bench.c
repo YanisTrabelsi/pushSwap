@@ -94,17 +94,17 @@ void	display_bench(float disorder, char *arg, t_list **lst_a, t_list **lst_b)
 	int	nb_op;
 
 	ft_printf(2, "Disorder: %f%%\n", disorder);
-	if (strcmp(arg, "--simple") == 1)
+	if (ft_strcmp(arg, "--simple") == 1)
 	{
 		ft_printf(2, "Strategy: Simple / O(nn2)\n");
 		return (insertion(lst_a, lst_b));
 	}
-	if (strcmp(arg, "--medium") == 1)
+	if (ft_strcmp(arg, "--medium") == 1)
 	{
 		ft_printf(2, "Strategy: Medium / O(n√n)\n");
 		return (chunk_base(lst_a, lst_b));
 	}
-	if (strcmp(arg, "--complex") == 1)
+	if (ft_strcmp(arg, "--complex") == 1)
 	{
 		ft_printf(2, "Strategy: Complex / O(nlogn)\n");
 		return (radix(lst_a, lst_b));
@@ -113,6 +113,6 @@ void	display_bench(float disorder, char *arg, t_list **lst_a, t_list **lst_b)
 		display_adaptative(disorder, lst_a, lst_b);
 	nb_op = bench_rotate(0);
 	nb_op += bench_pushswap(0);
-	nb_op += bench_duble(0);
-	ft_printf(2, "Total_ops: %d", nb_op);
+	nb_op += bench_double(0);
+	ft_printf(2, "Total_ops: %d\n", nb_op);
 }

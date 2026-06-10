@@ -16,13 +16,13 @@ static void	argparser(char *arg, char *next_arg, t_list **lst_a, t_list **lst_b)
 	float	disorder;
 
 	disorder = ft_disorder(*lst_a);
-	if (strcmp(arg, "--bench") == 1)
+	if (ft_strcmp(arg, "--bench") == 1)
 		return (display_bench(disorder, next_arg, lst_a, lst_b));
-	if (strcmp(arg, "--simple") == 1)
+	if (ft_strcmp(arg, "--simple") == 1)
 		return (insertion(lst_a, lst_b));
-	if (strcmp(arg, "--medium") == 1)
+	if (ft_strcmp(arg, "--medium") == 1)
 		return (chunk_base(lst_a, lst_b));
-	if (strcmp(arg, "--complex") == 1)
+	if (ft_strcmp(arg, "--complex") == 1)
 		return (radix(lst_a, lst_b));
 	else
 	{

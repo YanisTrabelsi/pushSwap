@@ -37,7 +37,7 @@ int	is_duplicate(int nb, t_list *lst)
 	return (0);
 }
 
-int	strcmp(char *str1, char *str2)
+int	ft_strcmp(char *str1, char *str2)
 {
 	int	i;
 
