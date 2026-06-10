@@ -27,7 +27,7 @@ static int	ft_putfloat(int fd, int nb)
 	}
 	if (nb >= 10)
 	{
-		len += ft_putnbr(fd, nb / 10);
+		len += ft_putfloat(fd, nb / 10);
 		if (nb >= 100 && nb <= 999)
 			write(fd, ".", 1);
 		nb = (nb % 10) + '0';
@@ -43,7 +43,7 @@ static int	ft_putfloat(int fd, int nb)
 	return (len);
 }
 
-static int	ft_float_to_int(int fd, float f)
+static int	ft_float_to_int(int fd, double f)
 {
 	int	nb;
 	int	len;
@@ -60,7 +60,7 @@ static int	special_char(int fd, const char *str, int i, va_list list)
 	len = 0;
 	if (str[i] == '%')
 	{
-		write(1, "%", 1);
+		write(fd, "%", 1);
 		len++;
 	}
 	if (str[i] == 'c')
