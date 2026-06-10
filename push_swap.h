@@ -66,6 +66,9 @@ void				insertion_max(t_list **lsta, t_list **lstb, t_bench *count);
 /* chunk_base.c */
 void				chunk_base(t_list **lst_a, t_list **lst_b);
 
+/* radix.c */
+void	radix(t_list **lst_a, t_list **lst_b);
+
 /* ft_printf.c */
 int					ft_printf(int fd, const char *str, ...);
 
