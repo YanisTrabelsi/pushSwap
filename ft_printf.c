@@ -48,7 +48,7 @@ static int	ft_float_to_int(int fd, float f)
 
 	nb = (int)(f * 100);
 	len = ft_putfloat(fd, nb);
-	return (len);
+	return (len + 1);
 }
 
 static int	special_char(int fd, const char *str, int i, va_list list)
