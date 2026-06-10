@@ -46,12 +46,12 @@ static void	right_shift(t_list *lst)
 
 static int	max_bits(int size)
 {
-    int bits;
+	int	bits;
 
 	bits = 0;
-    while ((size - 1) >> bits)
-        bits++;
-    return bits;
+	while ((size - 1) >> bits)
+		bits++;
+	return (bits);
 }
 
 void	radix(t_list **lst_a, t_list **lst_b)

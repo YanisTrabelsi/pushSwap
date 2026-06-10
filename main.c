@@ -45,7 +45,7 @@ static void	argparser(char *arg, t_list **lst_a, t_list **lst_b)
 			return (insertion(lst_a, lst_b));
 		if (disorder < 0.5f)
 			return (chunk_base(lst_a, lst_b));
-		else 
+		else
 			return (radix(lst_a, lst_b));
 	}
 }
