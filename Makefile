@@ -1,8 +1,8 @@
 NAME = push_swap
 CC = cc
 CFLAGS = -Werror -Wall -Wextra
-SOURCES =	utils_lst.c parsing.c operations.c operations2.c normalise.c \\
-			insertion.c insertion_max.c chunk_base.c bench.c
+SOURCES = utils_lst.c parsing.c operations.c operations2.c normalise.c insertion.c \
+		  radix.c chunk_base.c insertion_max.c bench.c ft_printf.c utils_printf.c
 OBJECTS = $(SOURCES:.c=.o)
 
 all: $(NAME)

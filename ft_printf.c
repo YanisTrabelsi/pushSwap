@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <unistd.h>
+#include <stdarg.h>
 
 static int	ft_putfloat(int fd, int nb)
 {
@@ -25,7 +27,7 @@ static int	ft_putfloat(int fd, int nb)
 	}
 	if (nb >= 10)
 	{
-		len += ft_putnbr(nb / 10);
+		len += ft_putnbr(fd, nb / 10);
 		if (nb >= 100 && nb <= 999)
 			write(fd, ".", 1);
 		nb = (nb % 10) + '0';
@@ -63,20 +65,10 @@ static int	special_char(int fd, const char *str, int i, va_list list)
 	}
 	if (str[i] == 'c')
 		len += ft_putchar(fd, va_arg(list, int));
-	else if (str[i] == 's')
-		len += ft_putstr(fd, va_arg(list, char *));
-	else if (str[i] == 'p')
-		len += ft_pointer(fd, va_arg(list, unsigned long int));
 	else if (str[i] == 'd' || str[i] == 'i')
 		len += ft_putnbr(fd, va_arg(list, int));
 	else if (str[i] == 'f')
-		len += ft_float_to_int(fd, va_arg(list, float));
-	else if (str[i] == 'u')
-		len += ft_putnbr(fd, va_arg(list, unsigned int));
-	else if (str[i] == 'x')
-		len += ft_hexa(fd, va_arg(list, unsigned int), "0123456789abcdef");
-	else if (str[i] == 'X')
-		len += ft_hexa(fd, va_arg(list, unsigned int), "0123456789ABCDEF");
+		len += ft_float_to_int(fd, va_arg(list, double));
 	return (len);
 }
 

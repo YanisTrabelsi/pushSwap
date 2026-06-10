@@ -53,15 +53,15 @@ void				reverse_rotate_a(t_list **lst);
 void				reverse_rotate_b(t_list **lst);
 
 /* bench.c */
-void				bench_rotate(int i);
-void				bench_pushswap(int i);
-void				bench_double(int i);
+int					bench_rotate(int i);
+int					bench_pushswap(int i);
+int					bench_double(int i);
 
 /* insertion.c */
 void				insertion(t_list **lsta, t_list **lstb);
 
 /* insertion_max.c */
-void				insertion_max(t_list **lsta, t_list **lstb, t_bench *count);
+void				insertion_max(t_list **lsta, t_list **lstb);
 
 /* chunk_base.c */
 void				chunk_base(t_list **lst_a, t_list **lst_b);

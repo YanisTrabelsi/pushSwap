@@ -9,7 +9,6 @@
 /*   Updated: 2026/06/08 20:24:42 by lherpet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "push_swap.h"
 
 static int	find_max(t_list *lst)
@@ -46,12 +45,12 @@ void	insertion_max(t_list **lsta, t_list **lstb)
 		if (i <= lstsize / 2)
 		{
 			while (i-- > 0)
-				rotate(lstb);
+				rotate_b(lstb);
 		}
 		else
 		{
 			while (i++ < lstsize)
-				reverse_rotate(lstb);
+				reverse_rotate_b(lstb);
 		}
 		push(lstb, lsta, 'b');
 		lstsize--;
