@@ -11,6 +11,32 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
+static int	check_args(char **argv)
+{
+	int		i;
+	int		j;
+
+	i = 1;
+	j = 0;
+	while (argv[i] && argv[i][1] != '-')
+	{
+		if (argv[i][0] == '-' && !(argv[i][1] >= 0 && argv[i][1] <= '9'))
+			return (0);
+		else if (argv[i][j + 1] && argv[i][0] == '-'
+				&& !(argv[i][1] >= 0 && argv[i][1] <= '9'))
+			++j;
+		while (argv[i][j])
+		{
+			if (argv[i][j] >= '0' && argv[i][j] <= '9')
+				++j;
+			else
+				return (0);
+		}
+		++i;
+	}
+	return (1);
+}
+
 static void	argparser(char *arg, char *next_arg, t_list **lst_a, t_list **lst_b)
 {
 	float	disorder;
@@ -35,6 +61,24 @@ static void	argparser(char *arg, char *next_arg, t_list **lst_a, t_list **lst_b)
 	}
 }
 
+void	lstclear(t_list **lst)
+{
+	t_list	*temp;
+
+	if (!*lst)
+		return ;
+	temp = *lst;
+	*lst = temp->next;
+	while (*lst)
+	{
+		free(temp);
+		temp = *lst;
+		*lst = temp->next;
+	}
+	free(temp);
+	lst = NULL;
+}
+
 int	main(int argc, char **argv)
 {
 	int		i;
@@ -55,5 +99,9 @@ int	main(int argc, char **argv)
 		ft_lstadd_back(&lst_a, ft_lstnew(nb, 0));
 		++i;
 	}
+	if (check_args(argv) == 0)
+		return (ft_printf(1, "Error\n"));
 	argparser(argv[i], argv[i + 1], &lst_a, &lst_b);
+	lstclear(&lst_a);
+	lstclear(&lst_b);
 }
