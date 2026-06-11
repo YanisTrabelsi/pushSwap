@@ -20,10 +20,10 @@ static int	check_args(char **argv)
 	j = 0;
 	while (argv[i] && argv[i][1] != '-')
 	{
-		if (argv[i][0] == '-' && !(argv[i][1] >= 0 && argv[i][1] <= '9'))
+		if (argv[i][0] == '-' && !(argv[i][1] >= '0' && argv[i][1] <= '9'))
 			return (0);
 		else if (argv[i][j + 1] && argv[i][0] == '-'
-				&& !(argv[i][1] >= 0 && argv[i][1] <= '9'))
+				&& !(argv[i][1] >= '0' && argv[i][1] <= '9'))
 			++j;
 		while (argv[i][j])
 		{
@@ -100,7 +100,9 @@ int	main(int argc, char **argv)
 		++i;
 	}
 	if (check_args(argv) == 0)
-		return (ft_printf(1, "Error\n"));
+		return (ft_printf(2, "Error\n"));
+	if (ft_disorder(lst_a) == 0.00f)
+		return (0);
 	argparser(argv[i], argv[i + 1], &lst_a, &lst_b);
 	lstclear(&lst_a);
 	lstclear(&lst_b);
