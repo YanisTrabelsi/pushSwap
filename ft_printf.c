@@ -28,7 +28,7 @@ static int	ft_putfloat(int fd, int nb)
 	if (nb >= 10)
 	{
 		len += ft_putfloat(fd, nb / 10);
-		if (nb >= 100 && nb <= 999)
+		if (nb > 100 && nb <= 1000)
 			write(fd, ".", 1);
 		nb = (nb % 10) + '0';
 		write(fd, &nb, 1);
@@ -48,7 +48,8 @@ static int	ft_float_to_int(int fd, double f)
 	int	nb;
 	int	len;
 
-	nb = (int)(f * 100);
+	f = f * 100;
+	nb = (int)f;
 	len = ft_putfloat(fd, nb);
 	return (len + 1);
 }
