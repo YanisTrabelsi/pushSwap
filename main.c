@@ -99,6 +99,7 @@ int	main(int argc, char **argv)
 		ft_lstadd_back(&lst_a, ft_lstnew(nb, 0));
 		++i;
 	}
+	printf("|| DISORDER: %f ||\n", ft_disorder(lst_a));
 	if (check_args(argv) == 0)
 		return (ft_printf(2, "Error\n"));
 	if (ft_disorder(lst_a) == 0.00f)

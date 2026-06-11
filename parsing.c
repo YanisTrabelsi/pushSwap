@@ -78,5 +78,5 @@ float	ft_disorder(t_list *lst)
 		}
 		lst = lst->next;
 	}
-	return (disorder / nb_paires);
+	return ((disorder / nb_paires) * 100);
 }
