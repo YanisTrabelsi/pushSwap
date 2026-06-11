@@ -11,39 +11,33 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-static int	check_args(char **argv)
+int	check_args(char *str)
 {
-	int		i;
-	int		j;
+	int	i;
 
-	i = 1;
-	j = 0;
-	while (argv[i] && argv[i][1] != '-')
+	i = 0;
+	if (str[0] == '-')
+		++i;
+	if (!str[i])
+		return (0);
+	while (str[i])
 	{
-		if (argv[i][0] == '-' && !(argv[i][1] >= '0' && argv[i][1] <= '9'))
+		if (str[i] < '0' || str[i] > '9')
 			return (0);
-		else if (argv[i][j + 1] && argv[i][0] == '-'
-				&& !(argv[i][1] >= '0' && argv[i][1] <= '9'))
-			++j;
-		while (argv[i][j])
-		{
-			if (argv[i][j] >= '0' && argv[i][j] <= '9')
-				++j;
-			else
-				return (0);
-		}
 		++i;
 	}
 	return (1);
 }
 
-static void	argparser(char *arg, char *next_arg, t_list **lst_a, t_list **lst_b)
+void	flagparser(char *arg, char *next_arg, t_list **lst_a, t_list **lst_b)
 {
 	float	disorder;
 
 	disorder = ft_disorder(*lst_a);
 	if (ft_strcmp(arg, "--bench") == 1)
 		return (display_bench(disorder, next_arg, lst_a, lst_b));
+	if (ft_strcmp(next_arg, "--bench") == 1)
+		return (display_bench(disorder, arg, lst_a, lst_b));
 	if (ft_strcmp(arg, "--simple") == 1)
 		return (insertion(lst_a, lst_b));
 	if (ft_strcmp(arg, "--medium") == 1)
@@ -59,6 +53,19 @@ static void	argparser(char *arg, char *next_arg, t_list **lst_a, t_list **lst_b)
 		else
 			return (radix(lst_a, lst_b));
 	}
+}
+
+int	check_flag(char *str)
+{
+	if (ft_strcmp(str, "--bench") == 1)
+		return (0);
+	if (ft_strcmp(str, "--simple") == 1)
+		return (0);
+	if (ft_strcmp(str, "--medium") == 1)
+		return (0);
+	if (ft_strcmp(str, "--complex") == 1)
+		return (0);
+	return (ft_printf(2, "ERROR\n"));
 }
 
 void	lstclear(t_list **lst)
@@ -82,8 +89,7 @@ void	lstclear(t_list **lst)
 int	main(int argc, char **argv)
 {
 	int		i;
-	int		nb_op;
-	long	nb;
+	char	bench;
 	t_list	*lst_a;
 	t_list	*lst_b;
 
@@ -91,20 +97,20 @@ int	main(int argc, char **argv)
 	i = 1;
 	lst_a = NULL;
 	lst_b = NULL;
-	while (argv[i] && argv[i][1] != '-')
+	if (ft_strcmp(argv[i], "--bench") == 1)
 	{
-		nb = ft_atoi(argv[i]);
-		if (nb < -2147483648 || nb > 2147483647 || is_duplicate(nb, lst_a))
-			return (1);
-		ft_lstadd_back(&lst_a, ft_lstnew(nb, 0));
+		bench = 1;
 		++i;
 	}
-	printf("|| DISORDER: %f ||\n", ft_disorder(lst_a));
-	if (check_args(argv) == 0)
-		return (ft_printf(2, "Error\n"));
+	if (argparser(argv, &i, &lst_a) != 0)
+		return (lstclear(&lst_a), 1);
+	if (argv[i] && check_flag(argv[i]) != 0)
+		return (lstclear(&lst_a), 1);
 	if (ft_disorder(lst_a) == 0.00f)
-		return (0);
-	argparser(argv[i], argv[i + 1], &lst_a, &lst_b);
-	lstclear(&lst_a);
-	lstclear(&lst_b);
+		return (lstclear(&lst_a), 0);
+	if (bench == 0)
+		flagparser(argv[i], argv[i + 1], &lst_a, &lst_b);
+	else
+		display_bench(ft_disorder(lst_a), argv[i], &lst_a, &lst_b);
+	return (lstclear(&lst_a), lstclear(&lst_b), 0);
 }

@@ -52,7 +52,7 @@ void	insertion_max(t_list **lsta, t_list **lstb)
 			while (i++ < lstsize)
 				reverse_rotate_b(lstb);
 		}
-		push(lstb, lsta, 'b');
+		push(lstb, lsta, 'a');
 		lstsize--;
 	}
 }

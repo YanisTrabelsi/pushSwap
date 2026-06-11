@@ -53,9 +53,9 @@ void	insertion(t_list **lsta, t_list **lstb)
 			while (i++ < lstsize)
 				reverse_rotate_a(lsta);
 		}
-		push(lsta, lstb, 'a');
+		push(lsta, lstb, 'b');
 		lstsize--;
 	}
 	while (*lstb)
-		push(lstb, lsta, 'b');
+		push(lstb, lsta, 'a');
 }

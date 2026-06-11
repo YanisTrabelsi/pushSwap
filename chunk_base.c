@@ -42,7 +42,7 @@ static void	push_elem(t_list **lst_a, t_list **lst_b, int c_mid, int c_max)
 		while (*lst_a && (*lst_a)->rank != rank_value)
 			rotate_a(lst_a);
 	}
-	push(lst_a, lst_b, 'a');
+	push(lst_a, lst_b, 'b');
 	if (*lst_b && (*lst_b)->rank < c_mid)
 		rotate_b(lst_b);
 }

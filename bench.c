@@ -72,6 +72,11 @@ int	bench_double(int i)
 static void	display_adaptative(float disorder, t_list **lst_a, t_list **lst_b)
 {
 	ft_printf(2, "Strategy: Adapative / ");
+	if (ft_lstsize(*lst_a) == 5)
+	{
+		ft_printf(2, "O(n√n)\n");
+		return (chunk_base(lst_a, lst_b));
+	}
 	if (disorder < 0.2f)
 	{
 		ft_printf(2, "O(nn2)\n");
@@ -97,17 +102,17 @@ void	display_bench(float disorder, char *arg, t_list **lst_a, t_list **lst_b)
 	if (ft_strcmp(arg, "--simple") == 1)
 	{
 		ft_printf(2, "Strategy: Simple / O(nn2)\n");
-		return (insertion(lst_a, lst_b));
+		insertion(lst_a, lst_b);
 	}
-	if (ft_strcmp(arg, "--medium") == 1)
+	else if (ft_strcmp(arg, "--medium") == 1)
 	{
 		ft_printf(2, "Strategy: Medium / O(n√n)\n");
-		return (chunk_base(lst_a, lst_b));
+		chunk_base(lst_a, lst_b);
 	}
-	if (ft_strcmp(arg, "--complex") == 1)
+	else if (ft_strcmp(arg, "--complex") == 1)
 	{
 		ft_printf(2, "Strategy: Complex / O(nlogn)\n");
-		return (radix(lst_a, lst_b));
+		radix(lst_a, lst_b);
 	}
 	else
 		display_adaptative(disorder, lst_a, lst_b);

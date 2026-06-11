@@ -82,4 +82,15 @@ int					ft_putchar(int fd, int c);
 int					ft_hexa_p(int fd, unsigned long int nb, char *base);
 int					ft_pointer(int fd, unsigned long int p);
 
+/* ptitTri.c */
+void				sort_three(t_list **lst_a);
+
+int					check_args(char *str);
+int					fill_a(t_list **lst_a, char **args, int i);
+void				check_three(float disorder,
+						t_list **lst_a, char c, char *str);
+int					main_trash(char *str, t_list **lsta, t_list **lstb);
+int					check_flag(char *str);
+void				lstclear(t_list **lst);
+int					argparser(char **argv, int *i, t_list **lst_a);
 #endif
