@@ -6,7 +6,7 @@
 /*   By: ytrabels </var/spool/mail/ytrabels>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 20:22:51 by ytrabels          #+#    #+#             */
-/*   Updated: 2026/06/12 00:44:10 by ytrabels         ###   ########.fr       */
+/*   Updated: 2026/06/12 07:01:14 by ytrabels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -60,7 +60,7 @@ int	argparser(char **argv, int *i, t_list **lst_a)
 {
 	long	nb;
 
-	while (argv[*i] && argv[*i][1] != '-')
+	while (argv[*i])
 	{
 		nb = ft_atoi(argv[*i]);
 		if (nb < -2147483648 || nb > 2147483647 || is_duplicate(nb, *lst_a)

@@ -6,7 +6,7 @@
 /*   By: ytrabels </var/spool/mail/ytrabels>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 23:15:22 by ytrabels          #+#    #+#             */
-/*   Updated: 2026/05/27 19:04:19 by ytrabels         ###   ########.fr       */
+/*   Updated: 2026/06/12 07:17:10 by ytrabels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
@@ -89,8 +89,6 @@ int					check_args(char *str);
 int					fill_a(t_list **lst_a, char **args, int i);
 void				check_three(float disorder,
 						t_list **lst_a, char c, char *str);
-int					main_trash(char *str, t_list **lsta, t_list **lstb);
-int					check_flag(char *str);
-void				lstclear(t_list **lst);
 int					argparser(char **argv, int *i, t_list **lst_a);
+
 #endif

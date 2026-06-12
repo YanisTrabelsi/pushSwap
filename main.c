@@ -6,7 +6,7 @@
 /*   By: ytrabels </var/spool/mail/ytrabels>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 03:23:49 by ytrabels          #+#    #+#             */
-/*   Updated: 2026/05/22 03:44:40 by ytrabels         ###   ########.fr       */
+/*   Updated: 2026/06/12 07:28:05 by ytrabels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -29,20 +29,20 @@ int	check_args(char *str)
 	return (1);
 }
 
-void	flagparser(char *arg, char *next_arg, t_list **lst_a, t_list **lst_b)
+static void	flagparser(char *arg1, char *arg2, t_list **lst_a, t_list **lst_b)
 {
 	float	disorder;
 
 	disorder = ft_disorder(*lst_a);
-	if (ft_strcmp(arg, "--bench") == 1)
-		return (display_bench(disorder, next_arg, lst_a, lst_b));
-	if (ft_strcmp(next_arg, "--bench") == 1)
-		return (display_bench(disorder, arg, lst_a, lst_b));
-	if (ft_strcmp(arg, "--simple") == 1)
+	if (ft_strcmp(arg1, "--bench") == 1)
+		return (display_bench(disorder, arg2, lst_a, lst_b));
+	if (ft_strcmp(arg2, "--bench") == 1)
+		return (display_bench(disorder, arg1, lst_a, lst_b));
+	if (ft_strcmp(arg1, "--simple") == 1)
 		return (insertion(lst_a, lst_b));
-	if (ft_strcmp(arg, "--medium") == 1)
+	if (ft_strcmp(arg1, "--medium") == 1)
 		return (chunk_base(lst_a, lst_b));
-	if (ft_strcmp(arg, "--complex") == 1)
+	if (ft_strcmp(arg1, "--complex") == 1)
 		return (radix(lst_a, lst_b));
 	else
 	{
@@ -55,21 +55,27 @@ void	flagparser(char *arg, char *next_arg, t_list **lst_a, t_list **lst_b)
 	}
 }
 
-int	check_flag(char *str)
+static void	check_flag(char **argv, int *i)
 {
-	if (ft_strcmp(str, "--bench") == 1)
-		return (0);
-	if (ft_strcmp(str, "--simple") == 1)
-		return (0);
-	if (ft_strcmp(str, "--medium") == 1)
-		return (0);
-	if (ft_strcmp(str, "--complex") == 1)
-		return (0);
-	return (ft_printf(2, "ERROR\n"));
+	int	nb;
+
+	nb = 0;
+	while(nb < 2)
+	{
+		if (ft_strcmp(argv[*i], "--bench") == 1)
+			(*i)++;
+		if (ft_strcmp(argv[*i], "--simple") == 1)
+			(*i)++;
+		if (ft_strcmp(argv[*i], "--medium") == 1)
+			(*i)++;
+		if (ft_strcmp(argv[*i], "--complex") == 1)
+			(*i)++;
+		nb++;
+	}
 }
 
-void	lstclear(t_list **lst)
-{
+static void	lstclear(t_list **lst)
+{ 
 	t_list	*temp;
 
 	if (!*lst)
@@ -83,13 +89,12 @@ void	lstclear(t_list **lst)
 		*lst = temp->next;
 	}
 	free(temp);
-	lst = NULL;
+	*lst = NULL;
 }
 
 int	main(int argc, char **argv)
 {
 	int		i;
-	char	bench;
 	t_list	*lst_a;
 	t_list	*lst_b;
 
@@ -97,20 +102,11 @@ int	main(int argc, char **argv)
 	i = 1;
 	lst_a = NULL;
 	lst_b = NULL;
-	if (ft_strcmp(argv[i], "--bench") == 1)
-	{
-		bench = 1;
-		++i;
-	}
+	check_flag(argv, &i);
 	if (argparser(argv, &i, &lst_a) != 0)
-		return (lstclear(&lst_a), 1);
-	if (argv[i] && check_flag(argv[i]) != 0)
 		return (lstclear(&lst_a), 1);
 	if (ft_disorder(lst_a) == 0.00f)
 		return (lstclear(&lst_a), 0);
-	if (bench == 0)
-		flagparser(argv[i], argv[i + 1], &lst_a, &lst_b);
-	else
-		display_bench(ft_disorder(lst_a), argv[i], &lst_a, &lst_b);
+	flagparser(argv[1], argv[2], &lst_a, &lst_b);
 	return (lstclear(&lst_a), lstclear(&lst_b), 0);
 }
