@@ -6,7 +6,7 @@
 /*   By: ytrabels </var/spool/mail/ytrabels>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 03:23:49 by ytrabels          #+#    #+#             */
-/*   Updated: 2026/06/12 07:28:05 by ytrabels         ###   ########.fr       */
+/*   Updated: 2026/06/12 08:05:37 by ytrabels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -60,7 +60,7 @@ static void	check_flag(char **argv, int *i)
 	int	nb;
 
 	nb = 0;
-	while(nb < 2)
+	while (nb < 2)
 	{
 		if (ft_strcmp(argv[*i], "--bench") == 1)
 			(*i)++;
@@ -75,7 +75,7 @@ static void	check_flag(char **argv, int *i)
 }
 
 static void	lstclear(t_list **lst)
-{ 
+{
 	t_list	*temp;
 
 	if (!*lst)
